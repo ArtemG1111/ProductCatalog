@@ -3,27 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductCatalog.ConsoleUI", "ProductCatalog.ConsoleUI\ProductCatalog.ConsoleUI.csproj", "{00A13DB0-DEA4-4311-80B7-0B7FC024BD7A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductCatalog.ConsoleUI", "ProductCatalog.ConsoleUI\ProductCatalog.ConsoleUI.csproj", "{00A13DB0-DEA4-4311-80B7-0B7FC024BD7A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductCatalog.DataAccess", "ProductCatalog.DataAccess\ProductCatalog.DataAccess.csproj", "{14DF4775-BE5A-4B43-AA88-706CA3D9BC55}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductCatalog.DataAccess", "ProductCatalog.DataAccess\ProductCatalog.DataAccess.csproj", "{14DF4775-BE5A-4B43-AA88-706CA3D9BC55}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductCatalog.BusinessLogic", "ProductCatalog.BusinessLogic\ProductCatalog.BusinessLogic.csproj", "{EA08EDB6-6C22-4742-AF0C-0906BFFF3909}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductCatalog.BusinessLogic", "ProductCatalog.BusinessLogic\ProductCatalog.BusinessLogic.csproj", "{EA08EDB6-6C22-4742-AF0C-0906BFFF3909}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ProductCatalog.BusinessLogic", "ProductCatalog.BusinessLogic", "{3CEE1158-89F0-49E6-9B4A-E3A1885AA6EC}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ProductCatalog.DataAccess", "ProductCatalog.DataAccess", "{AA78B531-D71E-45E4-BEDB-AF9E78528368}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ProductCatalog.ConsoleUI", "ProductCatalog.ConsoleUI", "{A3ABCF89-2D63-44A2-9765-26B2D611AABB}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{7502224B-B4C4-4793-9676-79A4B7F63803}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Interfaces", "Interfaces", "{BF6A7D2F-07EB-4D71-B677-A8930AC4F60F}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Repositories", "Repositories", "{F50174BB-A65C-4AD4-8BFB-1DD5B3AF52FC}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Models", "Models", "{C90B1732-9280-4749-80D6-4F221D3AA870}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configurations", "Configurations", "{68F3B39F-9A24-4F4D-B93D-151183F01756}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ProductCatalog.DataAccess", "ProductCatalog.DataAccess", "{452CE9AB-EF82-452B-8BFE-1345C0860793}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,13 +39,8 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{00A13DB0-DEA4-4311-80B7-0B7FC024BD7A} = {A3ABCF89-2D63-44A2-9765-26B2D611AABB}
-		{14DF4775-BE5A-4B43-AA88-706CA3D9BC55} = {AA78B531-D71E-45E4-BEDB-AF9E78528368}
+		{14DF4775-BE5A-4B43-AA88-706CA3D9BC55} = {452CE9AB-EF82-452B-8BFE-1345C0860793}
 		{EA08EDB6-6C22-4742-AF0C-0906BFFF3909} = {3CEE1158-89F0-49E6-9B4A-E3A1885AA6EC}
-		{7502224B-B4C4-4793-9676-79A4B7F63803} = {AA78B531-D71E-45E4-BEDB-AF9E78528368}
-		{BF6A7D2F-07EB-4D71-B677-A8930AC4F60F} = {AA78B531-D71E-45E4-BEDB-AF9E78528368}
-		{F50174BB-A65C-4AD4-8BFB-1DD5B3AF52FC} = {AA78B531-D71E-45E4-BEDB-AF9E78528368}
-		{C90B1732-9280-4749-80D6-4F221D3AA870} = {7502224B-B4C4-4793-9676-79A4B7F63803}
-		{68F3B39F-9A24-4F4D-B93D-151183F01756} = {C90B1732-9280-4749-80D6-4F221D3AA870}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7B5656CA-35ED-4F15-AE00-F047D6D9C9D5}
