@@ -4,10 +4,16 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductCatalog.ConsoleUI", "ProductCatalog.ConsoleUI\ProductCatalog.ConsoleUI.csproj", "{00A13DB0-DEA4-4311-80B7-0B7FC024BD7A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{EA08EDB6-6C22-4742-AF0C-0906BFFF3909} = {EA08EDB6-6C22-4742-AF0C-0906BFFF3909}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductCatalog.DataAccess", "ProductCatalog.DataAccess\ProductCatalog.DataAccess.csproj", "{14DF4775-BE5A-4B43-AA88-706CA3D9BC55}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductCatalog.BusinessLogic", "ProductCatalog.BusinessLogic\ProductCatalog.BusinessLogic.csproj", "{EA08EDB6-6C22-4742-AF0C-0906BFFF3909}"
+	ProjectSection(ProjectDependencies) = postProject
+		{14DF4775-BE5A-4B43-AA88-706CA3D9BC55} = {14DF4775-BE5A-4B43-AA88-706CA3D9BC55}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ProductCatalog.BusinessLogic", "ProductCatalog.BusinessLogic", "{3CEE1158-89F0-49E6-9B4A-E3A1885AA6EC}"
 EndProject
