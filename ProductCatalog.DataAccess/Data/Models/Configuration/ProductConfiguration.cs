@@ -9,7 +9,10 @@ namespace ProductCatalog.DataAccess.Data.Models.Configuration
     {
         public void Configure(EntityTypeBuilder<Product> builder)
         {
-            builder.HasKey(i => i.Id);
+            builder.HasMany(c => c.Categories)
+                .WithMany(p => p.Products)
+                .UsingEntity("ProductCategories");
+
         }
     }
 }
