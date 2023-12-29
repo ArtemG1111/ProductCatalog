@@ -28,5 +28,9 @@ namespace ProductCatalog.ConsoleUI.Controllers
         {
             _productService.DeleteProduct(product);
         }
+        public Product GetProductById(int id)
+        {
+            return _productService.GetProductById(id);
+        }
     }
 }

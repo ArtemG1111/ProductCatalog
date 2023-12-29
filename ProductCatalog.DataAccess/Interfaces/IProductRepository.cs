@@ -10,5 +10,6 @@ namespace ProductCatalog.DataAccess.Interfaces
         List<Product> GetProducts();
         void UpdateProduct(Product product);
         void DeleteProduct(Product product);
+        Product GetProductById(int id);
     }
 }

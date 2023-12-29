@@ -16,6 +16,7 @@ namespace ProductCatalog.BusinessLogic.Services
         public void AddProduct(Product product)
         {
             _productRepository.AddProduct(product);
+            
         }
         public List<Product> GetProducts()
         {
@@ -28,6 +29,10 @@ namespace ProductCatalog.BusinessLogic.Services
         public void DeleteProduct(Product product)
         {
             _productRepository.DeleteProduct(product);
+        }
+        public Product GetProductById(int id)
+        {
+            return _productRepository.GetProductById(id);
         }
     }
 }
