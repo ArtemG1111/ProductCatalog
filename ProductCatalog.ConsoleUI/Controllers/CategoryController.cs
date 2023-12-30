@@ -16,9 +16,9 @@ namespace ProductCatalog.ConsoleUI.Controllers
         {
             _categoryService.AddCategory(category);
         }
-        public void GetCategoryById(int id)
+        public Category GetCategoryById(int id)
         {
-            _categoryService.GetCategoryById(id);
+            return _categoryService.GetCategoryById(id);
         }
         public List<Category> GetAllCategories()
         {

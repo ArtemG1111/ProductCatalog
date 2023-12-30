@@ -17,9 +17,9 @@ namespace ProductCatalog.BusinessLogic.Services
         {
             _categoryRepository.AddCategory(category);
         }
-        public void GetCategoryById(int id)
+        public Category GetCategoryById(int id)
         {
-            _categoryRepository.GetCategoryById(id);
+            return _categoryRepository.GetCategoryById(id);
         }
         public List<Category> GetAllCategories()
         {

@@ -18,9 +18,9 @@ namespace ProductCatalog.DataAccess.Repositories
             _categoryContext.Categories.Add(category);
             _categoryContext.SaveChanges();
         }
-        public void GetCategoryById(int id)
+        public Category GetCategoryById(int id)
         {
-            _categoryContext.Categories.Find(id);
+            return _categoryContext.Categories.FirstOrDefault(i=>i.Id == id);
         }
         public List<Category> GetAllCategories()
         {
