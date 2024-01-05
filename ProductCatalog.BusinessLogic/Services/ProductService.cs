@@ -34,5 +34,9 @@ namespace ProductCatalog.BusinessLogic.Services
         {
             return _productRepository.GetProductById(id);
         }
+        public List<Product> GetProductByCategoryId(int id)
+        {
+            return _productRepository.GetProductByCategoryId(id);
+        }
     }
 }

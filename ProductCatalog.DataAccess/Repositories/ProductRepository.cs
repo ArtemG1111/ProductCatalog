@@ -37,5 +37,11 @@ namespace ProductCatalog.DataAccess.Repositories
         {
             return _context.Products.Include(c=>c.Categories).FirstOrDefault(i=>i.Id == id);
         }
+        public List<Product> GetProductByCategoryId(int id)
+        {
+            return _context.Products.Include(c => c.Categories).Where(i => i.Categories.Any(s => s.Id == id ||
+            s.ParentCategoryId == id)).ToList();
+
+        }
     }
 }

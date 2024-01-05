@@ -33,7 +33,7 @@ namespace ProductCatalog.ConsoleUI
                         Console.WriteLine("***Продукты***");
                         int pMenu;
                         Console.WriteLine("1 - Список всех продуктов | 2 - Добавить продукт | 3 - Изменить продукт " +
-                            "| 4 - Удалить продукт или категорию");
+                            "| 4 - Удалить продукт или категорию | 5 - Посмотреть продкуты категории");
                         Int32.TryParse(Console.ReadLine(), out pMenu);
                         Console.Clear();
                         if (pMenu == 1)
@@ -248,6 +248,33 @@ namespace ProductCatalog.ConsoleUI
                                 Console.Clear();                            
                             }
                         }
+                        else if (pMenu == 5)
+                        {
+                            Console.WriteLine("Все категории: ");
+                            var categories = categoryController.GetAllCategories();
+                            foreach (var c in categories)
+                            {
+                                Console.WriteLine($"{c.Id} - {c.Name}");
+                            }
+                            Console.Write("Выберите Id категории: ");
+                            Int32.TryParse(Console.ReadLine(), out pMenu);
+                            Console.Clear();                    
+                            var productsByCategory = productController.GetProductByCategoryId(pMenu);
+                            if (productsByCategory.Count > 0)
+                            {                               
+                                foreach (var p in productsByCategory)
+                                {
+                                    Console.WriteLine(p.Name);
+                                }
+                            }
+                            else if (productsByCategory.Count == 0)
+                            {
+                                Console.WriteLine("Не найдено продуктов с данной категорией");
+                            }
+                            Console.WriteLine("Нажмите Enter что бы вернутся назад");
+                            Console.ReadLine();
+                            Console.Clear();
+                        } 
                         break;
                     case 2:
                         Console.WriteLine("***Категории***");
