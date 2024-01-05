@@ -87,7 +87,7 @@ namespace ProductCatalog.ConsoleUI
                             Console.WriteLine("***Продукты***");
                             foreach (var p in productController.GetProducts())
                             {
-                                Console.WriteLine("###############");                              
+                                                             
                                 Console.WriteLine($"ID: {p.Id}, Название: {p.Name}, Цена: {p.Price}\nОписание: {p.Description}");
                                 Console.WriteLine("###############");
                             }
@@ -262,7 +262,20 @@ namespace ProductCatalog.ConsoleUI
                             var categories = categoryController.GetAllCategories();
                             foreach (var c in categories)
                             {
-                                Console.WriteLine(c.Name);
+                                Console.WriteLine($"Категория: {c.Name}");
+                                if (c.ParentCategory != null)
+                                {
+                                    Console.WriteLine($"Родительская категория: {c.ParentCategory.Name}");
+                                }
+                                if (c.ChildCategories != null)
+                                {
+                                    
+                                    foreach (var p in c.ChildCategories)
+                                    {
+                                        Console.WriteLine($"Подкатегория: {p.Name}");
+                                    }
+                                }
+                                
                             }
                             Console.WriteLine("-----------------------------");
                             Console.WriteLine("Нажмите Enter что бы вернутся назад");
@@ -271,13 +284,41 @@ namespace ProductCatalog.ConsoleUI
                         }
                         else if (cMenu == 2)
                         {
-                            Console.Write("Название категории: ");
-                            category.Name = Console.ReadLine();
-                            categoryController.AddCategory(category);
-                            Console.WriteLine("-----------------------------");
-                            Console.WriteLine("Нажмите Enter что бы вернутся назад");
-                            Console.ReadLine();
+                            int createCategoryMenu;
+                            category = new();
+                            Console.WriteLine("1 - Добавить категорию | 2 - Добавить подкатегорию");
+                            Int32.TryParse(Console.ReadLine(), out createCategoryMenu);
                             Console.Clear();
+                            if (createCategoryMenu == 1)
+                            {
+                                Console.Write("Название категории: ");
+                                category.Name = Console.ReadLine();
+                                categoryController.AddCategory(category);
+                                Console.WriteLine("-----------------------------");
+                                Console.WriteLine("Нажмите Enter что бы вернутся назад");
+                                Console.ReadLine();
+                                Console.Clear();                             
+                            }
+                            if (createCategoryMenu == 2)
+                            {                                
+                                var categories = categoryController.GetAllCategories();
+                                foreach (var c in categories)
+                                {
+                                    Console.WriteLine($"{c.Id} - {c.Name}");
+                                }
+                                Console.WriteLine("----------------");
+                                Console.WriteLine("Выберите ID категории: ");
+                                Int32.TryParse(Console.ReadLine(), out createCategoryMenu);                    
+                                Console.Clear();
+                                Console.WriteLine("Введите название подкатегории: ");
+                                category.Name = Console.ReadLine();
+                                category.ParentCategoryId = createCategoryMenu;
+                                categoryController.AddCategory(category);
+                                Console.WriteLine("Подкатегория добавлена! Нажмите Enter что бы вернутся");
+                                Console.ReadLine();
+                                Console.Clear();
+                            }
+                            
                         }                     
                         break;
                 }
