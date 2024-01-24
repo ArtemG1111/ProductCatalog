@@ -5,6 +5,7 @@ using ProductCatalog.ConsoleUI.Controllers;
 using ProductCatalog.DataAccess.Data;
 using ProductCatalog.DataAccess.Interfaces;
 using ProductCatalog.DataAccess.Repositories;
+using ProductCatalog.WEB.Common.Mappings;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("DeffaultConnection");
@@ -19,6 +20,7 @@ builder.Services.AddScoped<ProductContext>();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddAutoMapper(typeof(ProductMappingProfile));
 
 var app = builder.Build();
 

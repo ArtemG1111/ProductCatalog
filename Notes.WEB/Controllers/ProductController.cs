@@ -1,7 +1,9 @@
 ﻿
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using ProductCatalog.BusinessLogic.Interfaces;
 using ProductCatalog.DataAccess.Data.Models;
+using ProductCatalog.WEB.ViewModels;
 
 namespace ProductCatalog.ConsoleUI.Controllers
 {
@@ -10,14 +12,16 @@ namespace ProductCatalog.ConsoleUI.Controllers
     public class ProductController
     {
         private readonly IProductService _productService;
-        public ProductController(IProductService productService)
+        private readonly IMapper _mapper;
+        public ProductController(IProductService productService, IMapper mapper)
         {
             _productService = productService;
+            _mapper = mapper;
         }
         [HttpPost]
-        public void AddProduct(Product product)
+        public void AddProduct(ProductViewModel product)
         {
-            _productService.AddProduct(product);
+            _productService.AddProduct(_mapper.Map<Product>(product));
         }
         [HttpGet]
         public List<Product> GetProducts()
@@ -25,9 +29,9 @@ namespace ProductCatalog.ConsoleUI.Controllers
             return _productService.GetProducts();
         }
         [HttpPut]
-        public void UpdateProduct(Product product)
+        public void UpdateProduct(ProductViewModel product)
         {
-            _productService.UpdateProduct(product);
+            _productService.UpdateProduct(_mapper.Map<Product>(product));
         }
         [HttpDelete("{id}")]
         public void DeleteProduct(int id)
