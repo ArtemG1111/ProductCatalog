@@ -29,9 +29,10 @@ namespace ProductCatalog.BusinessLogic.Services
         {
             _categoryRepository.UpdateCategory(category);
         }
-        public void DeleteCategory(Category category)
+        public void DeleteCategory(int id)
         {
-            _categoryRepository.DeleteCategory(category);
+            Category deleteCategory = _categoryRepository.GetCategoryById(id);
+            _categoryRepository.DeleteCategory(deleteCategory);
         }
     }
 }

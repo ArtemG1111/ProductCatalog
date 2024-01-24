@@ -9,7 +9,7 @@ namespace ProductCatalog.BusinessLogic.Interfaces
         void AddCategory(Category category);
         Category GetCategoryById(int id);
         List<Category> GetAllCategories();
-        void DeleteCategory(Category category);
+        void DeleteCategory(int id);
         void UpdateCategory(Category category);
     }
 }

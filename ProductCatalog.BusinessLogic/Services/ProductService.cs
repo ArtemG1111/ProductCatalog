@@ -26,9 +26,10 @@ namespace ProductCatalog.BusinessLogic.Services
         {
             _productRepository.UpdateProduct(product);
         }
-        public void DeleteProduct(Product product)
+        public void DeleteProduct(int id)
         {
-            _productRepository.DeleteProduct(product);
+            Product deleteProduct = _productRepository.GetProductById(id);
+            _productRepository.DeleteProduct(deleteProduct);
         }
         public Product GetProductById(int id)
         {

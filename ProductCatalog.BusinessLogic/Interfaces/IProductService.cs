@@ -7,7 +7,7 @@ namespace ProductCatalog.BusinessLogic.Interfaces
         void AddProduct(Product product);
         List<Product> GetProducts();
         void UpdateProduct(Product product);
-        void DeleteProduct(Product product);
+        void DeleteProduct(int id);
         Product GetProductById(int id);
         List<Product> GetProductByCategoryId(int id);
 
