@@ -29,9 +29,9 @@ namespace ProductCatalog.ConsoleUI.Controllers
             return _categoryService.GetCategoryById(id);
         }
         [HttpGet]
-        public List<Category> GetAllCategories()
+        public List<CategoryViewModel> GetAllCategories()
         {
-            return _categoryService.GetAllCategories();
+            return _mapper.Map<List<CategoryViewModel>>(_categoryService.GetAllCategories());
         }
         [HttpPut]
         public void UpdateCategoty(CategoryViewModel category)

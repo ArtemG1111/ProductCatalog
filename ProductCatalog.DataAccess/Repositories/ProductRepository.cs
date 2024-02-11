@@ -16,7 +16,12 @@ namespace ProductCatalog.DataAccess.Repositories
         }
         public void AddProduct(Product product)
         {
-            _context.Add(product);
+            var findCategory = _context.Categories.Find(product.Categories.First().Id);
+            if (findCategory != null)
+            {
+                product.Categories[0] = findCategory;
+            }
+            _context.Products.Add(product);
             _context.SaveChanges();
         }
         public List<Product> GetProducts()
@@ -25,8 +30,26 @@ namespace ProductCatalog.DataAccess.Repositories
         }
         public void UpdateProduct(Product product)
         {
-            _context.Attach(product);
-            _context.SaveChanges();
+            Product? existingProduct = _context.Products
+        .Include(p => p.Categories) // подключаем таблицу категорий, чтобы ef следил за изменениями связей с этой таблицей
+        .First(p => p.Id == product.Id);
+
+            if (existingProduct == null)
+            {
+                throw new Exception($"Product with id ({product.Id}) not found.");
+            }
+
+            existingProduct.Name = product.Name;
+            existingProduct.Price = product.Price;
+            existingProduct.Description = product.Description;
+
+            var categoryIds = product.Categories.Select(pc => pc.Id); // выбираем Idшники категорий которые будут у обновленного продукта
+
+            existingProduct.Categories = _context.Categories
+                .Where(c => categoryIds.Any(pc => c.Id == pc)) // вытаскиваем из базы категории Id которых содержится в списке идшников
+                .ToList();
+
+            _context.SaveChanges(); // значения меняются благодаря трекингу
         }
         public void DeleteProduct(Product product)
         {

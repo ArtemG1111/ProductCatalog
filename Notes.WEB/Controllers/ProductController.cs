@@ -24,9 +24,9 @@ namespace ProductCatalog.ConsoleUI.Controllers
             _productService.AddProduct(_mapper.Map<Product>(product));
         }
         [HttpGet]
-        public List<Product> GetProducts()
+        public List<ProductViewModel> GetProducts()
         {
-            return _productService.GetProducts();
+            return _mapper.Map<List<ProductViewModel>>(_productService.GetProducts());
         }
         [HttpPut]
         public void UpdateProduct(ProductViewModel product)
@@ -39,14 +39,14 @@ namespace ProductCatalog.ConsoleUI.Controllers
             _productService.DeleteProduct(id);
         }
         [HttpGet("GetProductById/{id}")]
-        public Product GetProductById(int id)
+        public ProductViewModel GetProductById(int id)
         {
-            return _productService.GetProductById(id);
+            return _mapper.Map<ProductViewModel>(_productService.GetProductById(id));
         }
         [HttpGet("GetProductByCategoryId/{id}")]
-        public List<Product> GetProductByCategoryId(int id)
+        public List<ProductViewModel> GetProductByCategoryId(int id)
         {
-            return _productService.GetProductByCategoryId(id);
+            return _mapper.Map<List<ProductViewModel>>(_productService.GetProductByCategoryId(id));
         }
     }
 }

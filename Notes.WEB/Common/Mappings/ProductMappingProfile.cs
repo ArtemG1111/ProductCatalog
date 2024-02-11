@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using ProductCatalog.DataAccess.Data.Models;
+using ProductCatalog.WEB.ViewModels;
 
 namespace ProductCatalog.WEB.Common.Mappings
 {
@@ -7,7 +8,7 @@ namespace ProductCatalog.WEB.Common.Mappings
     {
         public ProductMappingProfile()
         {
-            CreateMap<Product, Category>().ReverseMap();
+            CreateMap<Product, ProductViewModel>().ReverseMap();
         }
     }
 }
