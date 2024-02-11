@@ -1,12 +1,14 @@
 ﻿
 
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using ProductCatalog.DataAccess.Data.Models;
 using System.Reflection;
 
 namespace ProductCatalog.DataAccess.Data
 {
-    public class ProductContext : DbContext
+    public class ProductContext : IdentityDbContext<IdentityUser>
     {
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }

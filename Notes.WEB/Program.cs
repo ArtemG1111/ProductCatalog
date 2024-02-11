@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using ProductCatalog.BusinessLogic.Interfaces;
 using ProductCatalog.BusinessLogic.Services;
@@ -20,7 +21,8 @@ builder.Services.AddScoped<ProductContext>();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddAutoMapper(typeof(ProductMappingProfile));
+builder.Services.AddAutoMapper(typeof(ProductMappingProfile), typeof(CategoryMappingProfile),typeof(UserMappingProfile));
+builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<ProductContext>();
 
 var app = builder.Build();
 

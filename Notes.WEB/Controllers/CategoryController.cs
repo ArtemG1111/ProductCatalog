@@ -9,7 +9,7 @@ namespace ProductCatalog.ConsoleUI.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class CategoryController
+    public class CategoryController : ControllerBase
     {
         private readonly ICategoryService _categoryService;
         private readonly IMapper _mapper;
