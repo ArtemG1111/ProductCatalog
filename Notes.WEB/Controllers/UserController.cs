@@ -12,19 +12,21 @@ namespace ProductCatalog.WEB.Controllers
         private readonly IMapper _mapper;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
-        public UserController(IMapper mapper, UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
+        private readonly ILogger _logger;
+        public UserController(IMapper mapper, UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager
+        ,ILogger logger)
         {
             _mapper = mapper;
             _userManager = userManager;
             _signInManager = signInManager;
+            _logger = logger;
         }
         [HttpPost]
         public async Task<IActionResult> SingUp(UserViewModel modelUser)
         {
             if (ModelState.IsValid)
-            {
-                IdentityUser user = new IdentityUser { UserName = modelUser.UserName, PasswordHash = modelUser.Password };
-                var identityUser = _mapper.Map<IdentityUser>(user);
+            {  
+                var identityUser = _mapper.Map<IdentityUser>(modelUser);
                 var result = await _userManager.CreateAsync(identityUser, modelUser.Password);
                 if (!result.Succeeded)
                 {
@@ -41,7 +43,6 @@ namespace ProductCatalog.WEB.Controllers
             if (ModelState.IsValid)
             {
                 var findUser = await _userManager.FindByNameAsync(modelUser.UserName);
-                var mapResult = _mapper.Map<IdentityUser>(findUser);
                 if (findUser == null)
                 {
                     return BadRequest("User Not Found!");
