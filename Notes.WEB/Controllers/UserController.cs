@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using FluentValidation;
+using FluentValidation.Results;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using ProductCatalog.WEB.ViewModels;
@@ -12,20 +14,29 @@ namespace ProductCatalog.WEB.Controllers
         private readonly IMapper _mapper;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
-        private readonly ILogger _logger;
+
+        private readonly IValidator<UserViewModel> _validator;
         public UserController(IMapper mapper, UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager
-        ,ILogger logger)
+        , IValidator<UserViewModel> validator)
         {
             _mapper = mapper;
             _userManager = userManager;
             _signInManager = signInManager;
-            _logger = logger;
+
+            _validator = validator;
         }
         [HttpPost]
         public async Task<IActionResult> SingUp(UserViewModel modelUser)
         {
             if (ModelState.IsValid)
-            {  
+            {
+                ValidationResult validationResult = await _validator.ValidateAsync(modelUser);
+                if (!validationResult.IsValid)
+                {
+                    var errors = validationResult.Errors.Select(e => new { Property = e.PropertyName, ErrorMessage = e.ErrorMessage });
+                    return BadRequest(new { Errors = errors });
+                }
+
                 var identityUser = _mapper.Map<IdentityUser>(modelUser);
                 var result = await _userManager.CreateAsync(identityUser, modelUser.Password);
                 if (!result.Succeeded)

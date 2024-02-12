@@ -1,5 +1,7 @@
 ﻿
 using AutoMapper;
+using FluentValidation;
+using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 using ProductCatalog.BusinessLogic.Interfaces;
 using ProductCatalog.DataAccess.Data.Models;
@@ -13,14 +15,24 @@ namespace ProductCatalog.ConsoleUI.Controllers
     {
         private readonly ICategoryService _categoryService;
         private readonly IMapper _mapper;
-        public CategoryController(ICategoryService categoryService, IMapper mapper)
+        private readonly IValidator<CategoryViewModel> _validator;
+        public CategoryController(ICategoryService categoryService, IMapper mapper, 
+            IValidator<CategoryViewModel> validator)
         {
             _categoryService = categoryService;
             _mapper = mapper;
+            _validator = validator;
         }
         [HttpPost]
         public void AddCategory(CategoryViewModel category)
         {
+            ValidationResult result = _validator.Validate(category);
+            if(!result.IsValid)
+            {
+                var errors = result.Errors.Select(e => new { Property = e.PropertyName, ErrorMessage = e.ErrorMessage });
+                BadRequest(new { Errors = errors });
+            }
+
             _categoryService.AddCategory(_mapper.Map<Category>(category));
         }
         [HttpGet("{id}")]
@@ -36,6 +48,13 @@ namespace ProductCatalog.ConsoleUI.Controllers
         [HttpPut]
         public void UpdateCategoty(CategoryViewModel category)
         {
+            ValidationResult result = _validator.Validate(category);
+            if (!result.IsValid)
+            {
+                var errors = result.Errors.Select(e => new { Property = e.PropertyName, ErrorMessage = e.ErrorMessage });
+                BadRequest(new { Errors = errors });
+            }
+
             _categoryService.UpdateCategory(_mapper.Map<Category>(category));
         }
         [HttpDelete("{id}")]

@@ -14,7 +14,6 @@ namespace ProductCatalog.DataAccess.Data
         public DbSet<Category> Categories { get; set; }
         public ProductContext(DbContextOptions<ProductContext> options) : base(options) 
         {
-            
             Database.EnsureCreated();
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
