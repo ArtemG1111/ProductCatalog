@@ -10,8 +10,9 @@ namespace ProductCatalog.DataAccess.Data
 {
     public class ProductContext : IdentityDbContext<IdentityUser>
     {
-        public DbSet<Product> Products { get; set; }
-        public DbSet<Category> Categories { get; set; }
+        public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<Category> Categories { get; set; }
+        public ProductContext() { }
         public ProductContext(DbContextOptions<ProductContext> options) : base(options) 
         {
             Database.EnsureCreated();

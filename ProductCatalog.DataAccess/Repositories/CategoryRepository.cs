@@ -33,7 +33,7 @@ namespace ProductCatalog.DataAccess.Repositories
         }
         public void DeleteCategory(Category category)
         {
-            _categoryContext.Remove(category);
+            _categoryContext.Categories.Remove(category);
             _categoryContext.SaveChanges();
         }
     }
